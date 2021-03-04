@@ -1,6 +1,20 @@
-<table>
-  <tr *ngFor="let rows of board">
-    <td *ngFor="let cols of rows">{{ cols }}</td>
-  </tr>
-</table>
-<br />
+<div id="game-board">
+  <table #table>
+    <tr *ngFor="let rows of board; let rowIndex = index">
+      <td
+        class="{{ rowIndex }}{{ colIndex }}"
+        *ngFor="let item of rows; let colIndex = index"
+        (click)="move(rowIndex, colIndex)"
+      >
+        <h1>{{ item }}</h1>
+        {{ rowIndex }},{{ colIndex }}
+      </td>
+    </tr>
+  </table>
+</div>
+<div>
+  <h2>{{ clickLog.length }}</h2>
+  <li *ngFor="let item of clickLog">
+    {{ item | json }}
+  </li>
+</div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BoardService } from './board.service';
 
 @Component({
   selector: 'app-root',
@@ -7,28 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
   board = [];
-
-  boardSize = 4 * 4;
+  boardSize = 4;
+  emptyCord = [this.boardSize - 1, this.boardSize - 1];
+  constructor(private readonly boardService: BoardService) {}
 
   public ngOnInit(): void {
-    this.initBoard(Math.sqrt(this.boardSize));
-  }
-
-  private initBoard(size: number): void {
-    this.board = [];
-
-    for (let index = 1; index < this.boardSize; index += size) {
-      this.board.push(this.buildColumnsArr(index, size));
-    }
-
-    this.board[size - 1][size - 1] = null;
-  }
-
-  private buildColumnsArr(rowRunner, size): number[] {
-    const c = [];
-    for (let index = 0; index < size; index++) {
-      c.push(rowRunner + index);
-    }
-    return c;
+    this.board = this.boardService.initBoard(this.boardSize);
   }
 }

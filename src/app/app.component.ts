@@ -9,11 +9,13 @@ import { BoardService } from './board.service';
 export class AppComponent implements OnInit {
   boardSize = 4;
   clickLog = [];
+  winningState = [];
 
   constructor(public readonly boardService: BoardService) {}
 
   ngOnInit(): void {
     this.boardService.initBoard(this.boardSize);
+    this.winningState = this.boardService.winningState;
   }
 
   public move(x: number, y: number): void {

@@ -12,11 +12,11 @@
     >
       <td
         class="{{ rowIndex }}{{ colIndex }}"
+        [ngClass]="{ win: item === winningState[rowIndex][colIndex] }"
         *ngFor="let item of rows; let colIndex = index"
         (click)="move(rowIndex, colIndex)"
       >
         <h1>{{ item }}</h1>
-        {{ rowIndex }},{{ colIndex }}
       </td>
     </tr>
   </table>

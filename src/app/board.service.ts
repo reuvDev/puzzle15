@@ -14,8 +14,10 @@ interface ICoordinates {
 export class BoardService {
   board = [];
   boardState$ = new BehaviorSubject<number[][]>([]);
+  winningState = [];
   size = 0;
   private emptyCell = [];
+  private readonly SHUFFLE_ROUNDS = 500;
 
   constructor() {}
 
@@ -44,8 +46,10 @@ export class BoardService {
   }
 
   public shuffle(): void {
-    const rounds = 2;
-    this.repeatFunctionTimes(this.moveRandomDirection.bind(this), rounds);
+    this.repeatFunctionTimes(
+      this.moveRandomDirection.bind(this),
+      this.SHUFFLE_ROUNDS
+    );
   }
 
   //#region MoveToDirections
@@ -111,6 +115,13 @@ export class BoardService {
     }
     this.board[size - 1][size - 1] = null;
     this.boardState$.next(this.board);
+    this.buildWinningState();
+  }
+
+  private buildWinningState(): void {
+    this.board.forEach((x) => {
+      this.winningState.push([...x]);
+    });
   }
 
   private buildColumnsArr(rowRunner: number, size: number): number[] {

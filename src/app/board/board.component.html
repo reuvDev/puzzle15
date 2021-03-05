@@ -1,5 +1,5 @@
 <div>
-  <button (click)="shuffle()">shuffle</button>
+  <button class="btn" (click)="shuffle()">shuffle</button>
 </div>
 
 <div id="game-board">
@@ -12,10 +12,14 @@
     >
       <td
         class="{{ rowIndex }}{{ colIndex }}"
-        [ngClass]="{ win: item === winningState[rowIndex][colIndex] }"
+        [ngClass]="{
+          win: item === winningState[rowIndex][colIndex],
+          empty: item === null
+        }"
         *ngFor="let item of rows; let colIndex = index"
       >
         <app-tile
+          class="hover"
           [value]="item"
           [x]="rowIndex"
           [y]="colIndex"

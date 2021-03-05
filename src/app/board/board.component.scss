@@ -1,0 +1,23 @@
+table,
+th,
+td {
+  border: 1px solid grey;
+  border-collapse: collapse;
+  padding: 5px;
+}
+
+td {
+  min-width: 10em;
+  text-align: center;
+}
+
+#game-board {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+.win {
+  background-color: green;
+  width: auto;
+}

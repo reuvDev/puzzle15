@@ -1,0 +1,28 @@
+<div>
+  <button (click)="shuffle()">shuffle</button>
+</div>
+
+<div id="game-board">
+  <table #table>
+    <tr
+      *ngFor="
+        let rows of this.boardService.boardState$ | async;
+        let rowIndex = index
+      "
+    >
+      <td
+        class="{{ rowIndex }}{{ colIndex }}"
+        [ngClass]="{ win: item === winningState[rowIndex][colIndex] }"
+        *ngFor="let item of rows; let colIndex = index"
+      >
+        <app-tile
+          [value]="item"
+          [x]="rowIndex"
+          [y]="colIndex"
+          (oMove)="move($event)"
+        >
+        </app-tile>
+      </td>
+    </tr>
+  </table>
+</div>

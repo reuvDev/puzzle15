@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { DIRECTIONS, NUMBER_OF_MOVES, ROW_COL } from './model/constant.enum';
-import { environment } from '../environments/environment';
+import { environment } from 'src/environments/environment';
+import { ROW_COL, NUMBER_OF_MOVES, DIRECTIONS } from '../model/constant.enum';
 
 interface ICoordinates {
   x: number;

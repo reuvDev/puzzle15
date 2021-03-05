@@ -1,6 +1,15 @@
+<div>
+  <button (click)="shuffle()">shuffle</button>
+</div>
+
 <div id="game-board">
   <table #table>
-    <tr *ngFor="let rows of board; let rowIndex = index">
+    <tr
+      *ngFor="
+        let rows of this.boardService.boardState$ | async;
+        let rowIndex = index
+      "
+    >
       <td
         class="{{ rowIndex }}{{ colIndex }}"
         *ngFor="let item of rows; let colIndex = index"
@@ -11,10 +20,4 @@
       </td>
     </tr>
   </table>
-</div>
-<div>
-  <h2>{{ clickLog.length }}</h2>
-  <li *ngFor="let item of clickLog">
-    {{ item | json }}
-  </li>
 </div>
